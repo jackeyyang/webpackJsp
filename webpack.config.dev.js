@@ -7,6 +7,8 @@
 
 'use strict'
 const webpack = require('webpack');
+const path = require('path');
+const rimraf = require('rimraf'); // 删除文件
 // extract-text-webpack-plugin
 // 该插件的主要是为了抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
