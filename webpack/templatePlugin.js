@@ -8,7 +8,7 @@ var fs = require('fs'); // 文件操作系统模块
 var mkdirp = require('mkdirp'); // 文件夹创建操作
 var yamlFrontMatter = require('yaml-front-matter'); // 使用一段 YAML 语法的头部文本来标记源文件
 var _ = require('underscore'); // Underscore封装了常用的JavaScript对象操作方法，用于提高开发效率。
-var config = require('./config');
+var config = require('./config'); // 引入设置
 
 var makeTemp = function(text, templateId, options) {
 	text = repalceInclude(text, options, templateId);
