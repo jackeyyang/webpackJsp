@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-22 16:52:01
+* @Last Modified time: 2018-03-22 17:51:24
 */
 
 'use strict'
@@ -54,7 +54,13 @@ entries['vendor'] = config.vendor; // 所有模块用到的打包到一个文件
 
 var plugins = [];
 plugins.push(
-	new ExtractTextPlugin('styles/[name].css' + config.HASH_LENGTH('contenthash')) // 处理css
+	// 将公共用到的打包
+	new webpack.optimize.CommonsChunkPlugin({
+		name: ['vendor','manifest'],
+		minChunks: Infinity
+	}),
+	// 处理css
+	new ExtractTextPlugin('styles/[name].css' + config.HASH_LENGTH('contenthash'))
 )
 // console.log('plugins111:'+JSON.stringify(plugins));
 

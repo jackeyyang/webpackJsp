@@ -1,5 +1,5 @@
 ---
-entry: common
+entry: clinic/scripts/clinic.js
 ---
 
 <!DOCTYPE html>
