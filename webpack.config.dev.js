@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-22 17:51:24
+* @Last Modified time: 2018-03-22 18:27:14
 */
 
 'use strict'
@@ -47,7 +47,7 @@ pageFiles.forEach(function(item){
 	}
 
 });
-entries['vendor'] = config.vendor; // 所有模块用到的打包到一个文件
+entries['vendor'] = config.vendor; // ['jquery', 'libs/bootstrap','scripts/common']模块打包到一个文件
 /**
  * [entries end]
  */
