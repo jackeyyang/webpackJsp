@@ -12,10 +12,11 @@ var resolve =  function() {
 var alias = {
 	libs: resolve('libs'),
 	jquery: resolve('libs/jquery'),
-	utils: resolve('src/script/utils'),
+	utils: resolve('src/scripts/utils'),
 	fonts: resolve('src/fonts'),
-	home: resolve('src/projects/home'),
-	images: resolve('src/projects/images'),
+	clinic: resolve('src/projects/clinic'),
+	match: resolve('src/projects/match'),
+	images: resolve('src/images'),
 	images_sprites: resolve('src/images/spritesImage'),
 	sass: resolve('src/sass'),
 	sass_sprites: resolve('src/sass/sprites'),
@@ -34,17 +35,17 @@ exports.templateSetting = {
 	evaluate: /\[\[(.+?)\]\]/g
 }
 
-exports.vendor = ['jquery', 'libs/bootstrap', 'scripts/common'];
+exports.vendor = ['jquery', 'libs/bootstrap','scripts/common'];
 exports.vendor_match = ['jquery', 'libs/bootstrap'];
 exports.STATIC_URL = {
-	DEV: 'http://d.sinotn.com:' + PORT,
+	DEV: 'http://dev.choice.com:' + PORT,
 	PRO: '/static'
 };
 
 // 文件hash的长度
 exports.HASH_LENGTH = (hash, env) => env=='pro' ? '?[' + hash + ':9]' : '';
 exports.resolve = resolve;
-exports.OUTPUTPATH_PRO = resolve('../sinotn-lawTeach-static-pro/static/lawTeach');
+exports.OUTPUTPATH_PRO = resolve('../webpackJsp/static');
 exports.OUTPUTPATH_DEV = resolve('dev');
 exports.alias = alias;
 exports.CWD = cwd;

@@ -1,12 +1,12 @@
 ---
-entry: match/scripts/match.js
+entry: common
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>match</title>
+    <title>clinic</title>
 </head>
 <body>
 
