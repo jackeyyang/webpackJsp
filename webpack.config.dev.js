@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-22 18:27:14
+* @Last Modified time: 2018-03-23 16:41:34
 */
 
 'use strict'
@@ -54,13 +54,21 @@ entries['vendor'] = config.vendor; // ['jquery', 'libs/bootstrap','scripts/commo
 
 var plugins = [];
 plugins.push(
-	// 将公共用到的打包
+	// 将公共用到的打包进vendor
 	new webpack.optimize.CommonsChunkPlugin({
 		name: ['vendor','manifest'],
 		minChunks: Infinity
 	}),
 	// 处理css
-	new ExtractTextPlugin('styles/[name].css' + config.HASH_LENGTH('contenthash'))
+	new ExtractTextPlugin('styles/[name].css' + config.HASH_LENGTH('contenthash')),
+	//把一个全局变量插入到所有的代码中,支持jQuery plugin的使用;
+	//使用ProvidePlugin加载使用频率高的模块
+	new webpack.ProvidePlugin({
+		$: 'jquery',
+		jQuery: 'jquery',
+		'window.jQuery': 'jquery',
+		'window.$': 'jquery'
+	})
 )
 // console.log('plugins111:'+JSON.stringify(plugins));
 
@@ -71,7 +79,7 @@ module.exports = function(argv) {
 		entry: entries,
 		output: {
 			path: config.OUTPUTPATH_DEV,
-			filename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
+			filename: 'scripts/[name].[chunkhash:8].js' + config.HASH_LENGTH('chunkhash'),
 			chunkFilename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
 			publicPath: config.STATIC_URL.DEV + '/dev/'
 		},

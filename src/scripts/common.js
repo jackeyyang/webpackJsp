@@ -3,3 +3,7 @@ function ax(){
 }
 
 ax();
+
+function cx(){
+    console.log('cx');
+}
