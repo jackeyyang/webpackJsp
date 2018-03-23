@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-23 16:41:34
+* @Last Modified time: 2018-03-23 18:18:06
 */
 
 'use strict'
@@ -69,7 +69,38 @@ plugins.push(
 		'window.jQuery': 'jquery',
 		'window.$': 'jquery'
 	})
+);
+
+plugins.push(
+	new TemplatePlugin({
+		// host: CONFIG.BASE_URL.dev,
+		pages: 'src/projects',
+		layout: 'src/layouts',
+		partial: 'src/partials',
+		// addTemplateHelpers: CONFIG.addTemplateHelpers,
+		//  输出路径   {path}目标文件路径
+		distPath: function(filepath) {
+			filepath = filepath.replace(/\\/g, '\/');
+			var reg = /\/src\/projects\/(.*)\/v\/(.*)/ig;
+			var regObj = reg.exec(filepath);
+			var pName = regObj[1];
+			var file = regObj[2]
+			// return config.resolve('dev', pName, 'v', file);
+
+			// /Users/xiexie/sinotn/projects/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sinotn-lawTeach-user-web/v
+			//
+			//  /sinotn-lawTeach-exam-web/src/main/webapp/v
+			console.log(file,'aaa');
+			file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, 'webpackJsp-' + pName + '-web/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sinotn-lawTeach-' + pName + '-web/v/' + file);
+			console.log(file,'bbb');
+			return file;
+			// return path.replace(/\/src\/swig\/(\w+)\//, '/' + ASSETS_FOLDER + '/projects/$1/v/')
+		}
+	})
 )
+
+console.log('xxxxxxxxxxxxx'+ myConfig.ECLIPSE + JSON.stringify(plugins));
+
 // console.log('plugins111:'+JSON.stringify(plugins));
 
 module.exports = function(argv) {

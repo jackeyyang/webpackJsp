@@ -1,0 +1,18 @@
+<!--
+* @Author: jacky.yang
+* @Date:   2018-03-23 17:46:51
+* @Last Modified by:   jacky.yang
+* @Last Modified time: 2018-03-23 17:47:14
+-->
+
+
+    [[ for (var chunk in htmlWebpackPlugin.files.chunks) { ]]
+        [[if (chunk !='vendor' && chunk!= 'manifest'){ ]]
+            <script src="{{ htmlWebpackPlugin.files.chunks[chunk].entry}}"></script>
+        [[ } ]]
+    [[ } ]]
+    [[ if (htmlWebpackPlugin.options.devServer) { ]]
+    <script src="{{htmlWebpackPlugin.options.devServer}}/webpack-dev-server.js"></script>
+    [[ } ]]
+</body>
+</html>
