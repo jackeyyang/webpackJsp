@@ -84,17 +84,11 @@ plugins.push(
 			var reg = /\/src\/projects\/(.*)\/v\/(.*)/ig;
 			var regObj = reg.exec(filepath);
 			var pName = regObj[1];
-			var file = regObj[2]
-			// return config.resolve('dev', pName, 'v', file);
-
-			// /Users/xiexie/sinotn/projects/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sinotn-lawTeach-user-web/v
-			//
-			//  /sinotn-lawTeach-exam-web/src/main/webapp/v
+			var file = regObj[2]			
 			console.log(file,'aaa');
 			file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, 'webpackJsp-' + pName + '-web/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sinotn-lawTeach-' + pName + '-web/v/' + file);
 			console.log(file,'bbb');
-			return file;
-			// return path.replace(/\/src\/swig\/(\w+)\//, '/' + ASSETS_FOLDER + '/projects/$1/v/')
+			return file;			
 		}
 	})
 )
