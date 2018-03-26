@@ -1,3 +1,3 @@
 function globals(){
-    console.log('asfdasdf');
+    console.log('asfdasdfse11111');
 }

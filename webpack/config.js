@@ -25,7 +25,7 @@ var alias = {
 	data: resolve('data')
 }
 
-exports.projects = ['clinic','match'];
+exports.projects = ['clinic','match']; // 设置启动项目
 
 exports.templateSetting = {
 	layout: 'src/layouts',

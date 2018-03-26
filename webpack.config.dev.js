@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-26 15:47:44
+* @Last Modified time: 2018-03-26 17:49:42
 */
 
 'use strict'
@@ -19,28 +19,9 @@ const yamlFrontMatter = require('yaml-front-matter'); // 使用一段 YAML 语�
 const myConfig = require('./webpack/myConfig');
 const loader = require('./webpack/loader'); // 各种loader设置文件
 
-
-
 var projects = config.projects;
 
 var webpackObj = [];
-
-webpackObj.push({
-	entry: [],
-	output: {
-		path: config.OUTPUTPATH_DEV + '/test',
-		filename: 'scripts/[name].js',
-		publicPath: config.STATIC_URL.DEV + '/dev/'
-	},
-	devServer: {
-		stats: 'minimal',
-		port: config.PORT,
-		host: '0.0.0.0',
-		headers: {
-			'Access-Control-Allow-Origin': '*'
-		}
-	}
-})
 
 projects.forEach(function(project) {
 
@@ -86,18 +67,11 @@ projects.forEach(function(project) {
 				var regObj = reg.exec(filepath);
 				var pName = regObj[1];
 				var file = regObj[2]
-					// return config.resolve('dev', pName, 'v', file);
-					// /Users/xiexie/sinotn/projects/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sinotn-lawTeach-user-web/v
-					//
-					//  /sinotn-lawTeach-exam-web/src/main/webapp/v
-				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, 'sinotn-lawTeach-' + pName + '-web/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sinotn-lawTeach-' + pName + '-web/v/' + file);
+				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, pName + '/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/javaWebTest/' + pName + '/v/' + file);
 				return file;
-				// return path.replace(/\/src\/swig\/(\w+)\//, '/' + ASSETS_FOLDER + '/projects/$1/v/')
 			}
 		})
-	)
-
-
+	);
 
 	pageFiles.forEach(function(item) {
 		var pageData = yamlFrontMatter.loadFront(item);
@@ -133,7 +107,16 @@ projects.forEach(function(project) {
 			// root: [config.resolve('src')],
 			alias: config.alias
 		},
-		plugins: plugins
+		plugins: plugins,
+		devServer: {
+			stats: 'minimal',
+			port: config.PORT,
+			host: '0.0.0.0',
+			headers: {
+				'Access-Control-Allow-Origin': '*'
+			},
+			disableHostCheck: true
+		}
 	});
 
 })
