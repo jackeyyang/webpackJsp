@@ -21,5 +21,5 @@ entry: match/scripts/match.js
 ---
 
 <div class="full-screen-preview">
-    content
+    contentsfasfsasf
 </div>
