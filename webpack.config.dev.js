@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-26 17:49:42
+* @Last Modified time: 2018-03-26 18:38:00
 */
 
 'use strict'
@@ -67,11 +67,13 @@ projects.forEach(function(project) {
 				var regObj = reg.exec(filepath);
 				var pName = regObj[1];
 				var file = regObj[2]
-				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, pName + '/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/javaWebTest/' + pName + '/v/' + file);
+				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, pName + '/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/' + pName + '/v/' + file);
 				return file;
 			}
 		})
-	);
+	)
+
+
 
 	pageFiles.forEach(function(item) {
 		var pageData = yamlFrontMatter.loadFront(item);
@@ -94,10 +96,10 @@ projects.forEach(function(project) {
 	webpackObj.push({
 		entry: entries,
 		output: {
-			path: config.OUTPUTPATH_DEV + '/' + project,
+			path: config.OUTPUTPATH_DEV,
 			filename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
 			chunkFilename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
-			publicPath: config.STATIC_URL.DEV + '/dev/'+project+'/'
+			publicPath: config.STATIC_URL.DEV
 		},
 
 		module: {

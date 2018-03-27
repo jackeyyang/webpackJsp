@@ -6,5 +6,5 @@ entry: match/scripts/match.js
 ---
 
 <div class="full-screen-preview">
-    jackey yang function
+    xxxx
 </div>
