@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-26 18:38:00
+* @Last Modified time: 2018-03-27 12:07:40
 */
 
 'use strict'
@@ -25,18 +25,22 @@ var webpackObj = [];
 
 projects.forEach(function(project) {
 
-	rimraf.sync(config.OUTPUTPATH_DEV + '/project');
+	var OUTPUTPATH_DEV = config.OUTPUTPATH_DEV + '/'+ project;
+	// config.OUTPUTPATH_DEV = resolve('dev')
+	// rimraf.sync(OUTPUTPATH_DEV);
 
 	// //  html模板路径
 	const pageFiles = glob.sync('src/projects/' + project + '/v/**/*', {
 		nodir: true
 	});
+	// console.log('src/projects/clinic/v/clinic.jsp');
+	// console.log('xbsebbbb:'+pageFiles);
 
 	var entries = {};
 
 	var plugins = [
 		new webpack.optimize.CommonsChunkPlugin({
-			names: ['vendor_' + project, 'manifest'],
+			names: ['vendor','manifest'],
 			minChunks: Infinity
 		}),
 		new ExtractTextPlugin('styles/[name].css' + config.HASH_LENGTH('contenthash')),
@@ -67,7 +71,10 @@ projects.forEach(function(project) {
 				var regObj = reg.exec(filepath);
 				var pName = regObj[1];
 				var file = regObj[2]
-				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, pName + '/src/main/webapp/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/' + pName + '/v/' + file);
+				// myConfig.JSP_DEV_PATH = F:\\Trunk2\\apache-tomcat-8.0.46\\webapps
+				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, myConfig.FOLDERNAME+'/'+pName + '/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/' + myConfig.FOLDERNAME +'/'+ pName + '/v/' + file);
+				// console.log('file11111'+file);
+				// \Trunk2\apache-tomcat-8.0.46\webapps\choiceEX\clinic\v\clinic.jsp
 				return file;
 			}
 		})
@@ -80,7 +87,7 @@ projects.forEach(function(project) {
 		var entry = pageData.entry && pageData.entry.replace(/\.js$/, '');
 		var chunks = [];
 		if (entry) {
-			chunks = ['manifest', 'vendor_' + project];
+			chunks = ['manifest', 'vendor'];
 			if (entry !== 'common') {
 				chunks.push(entry);
 				entries[entry.replace('/scripts/', '/')] = [path.join(__dirname, 'src/projects', entry)];
@@ -88,18 +95,18 @@ projects.forEach(function(project) {
 		}
 	});
 
-	entries['vendor_' + project] = ['jquery', 'libs/bootstrap'];
+	entries['vendor'] = ['jquery', 'libs/bootstrap'];
 	// entries['vendor_match'] = config.vendor_match;
-
+	console.log('entries3333'+JSON.stringify(entries));
 
 	var loaderAry = loader();
 	webpackObj.push({
 		entry: entries,
 		output: {
-			path: config.OUTPUTPATH_DEV,
+			path: OUTPUTPATH_DEV,
 			filename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
 			chunkFilename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
-			publicPath: config.STATIC_URL.DEV
+			publicPath: config.STATIC_URL.DEV+ '/dev/'
 		},
 
 		module: {

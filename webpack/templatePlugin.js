@@ -173,10 +173,11 @@ TemplatePlugin.prototype = {
 								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/manifest.js'
 							},
 							'vendor': {
-								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/vendor_' + options.project + '.js'
+								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/vendor' + '.js'
 							},
 							'scripts/index': {
-								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/' + entry + '.js'
+								///dev/match/scripts/match/match.js
+								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project + '/scripts/' + entry + '.js'
 							}
 						},
 						'css': [

@@ -2,6 +2,8 @@ require('match/sass/match.scss');
 require('scripts/common.js')
 require('scripts/global.js')
 
-function match1(){
+function serwe(){
     console.log('matchxxx');
 }
+
+serwe()
