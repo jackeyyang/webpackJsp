@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-27 18:17:41
+* @Last Modified time: 2018-03-27 18:40:39
 */
 
 'use strict'
@@ -90,7 +90,8 @@ projects.forEach(function(project) {
 			chunks = ['manifest', 'vendor'];
 			if (entry !== 'common') {
 				chunks.push(entry);
-				entries[entry.replace('/scripts/', '/')] = [path.join(__dirname, 'src/projects', entry)];
+				entries[entry.replace(project+'/scripts/', '')] = [path.join(__dirname, 'src/projects', entry)];
+				// entries[entry.replace('/scripts/', '/')] = [path.join(__dirname, 'src/projects', entry)];
 			}
 		}
 	});

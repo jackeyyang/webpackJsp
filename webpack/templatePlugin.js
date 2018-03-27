@@ -160,7 +160,8 @@ TemplatePlugin.prototype = {
 				}
 				pageData.window.g_static_host = config.STATIC_URL.DEV + '/';
 				pageData.devServer = config.STATIC_URL.DEV;
-				var entry = pageData.entry && pageData.entry.replace(/\.js$/, '').replace('/scripts/', '/');
+				var entry = pageData.entry && pageData.entry.replace(/\.js$/, '').replace(options.project+'/scripts/', '');
+				// var entry = pageData.entry && pageData.entry.replace(/\.js$/, '').replace(project+'/scripts/', '/');
 
 				var source = fs.readFileSync(file, 'utf8');
 				source = repalceLayout(source, options);
