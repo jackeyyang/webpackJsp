@@ -98,7 +98,7 @@ projects.forEach(function(project) {
 
 	entries['vendor'] = config.vendor;
 	// entries['vendor_match'] = config.vendor_match;
-	console.log('entries3333'+JSON.stringify(entries));
+	console.log('entriesxxxxx'+JSON.stringify(entries));
 
 	var loaderAry = loader();
 	webpackObj.push({
