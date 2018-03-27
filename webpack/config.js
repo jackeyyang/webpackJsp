@@ -36,7 +36,7 @@ exports.templateSetting = {
 }
 
 exports.vendor = ['jquery', 'libs/bootstrap','scripts/common'];
-exports.vendor_match = ['jquery', 'libs/bootstrap'];
+// exports.vendor_match = ['jquery', 'libs/bootstrap'];
 exports.STATIC_URL = {
 	DEV: 'http://dev.choice.com:' + PORT,
 	PRO: '/static'

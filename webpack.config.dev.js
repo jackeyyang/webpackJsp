@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-27 12:07:40
+* @Last Modified time: 2018-03-27 18:17:41
 */
 
 'use strict'
@@ -27,7 +27,7 @@ projects.forEach(function(project) {
 
 	var OUTPUTPATH_DEV = config.OUTPUTPATH_DEV + '/'+ project;
 	// config.OUTPUTPATH_DEV = resolve('dev')
-	// rimraf.sync(OUTPUTPATH_DEV);
+	rimraf.sync(OUTPUTPATH_DEV);
 
 	// //  html模板路径
 	const pageFiles = glob.sync('src/projects/' + project + '/v/**/*', {
@@ -95,7 +95,7 @@ projects.forEach(function(project) {
 		}
 	});
 
-	entries['vendor'] = ['jquery', 'libs/bootstrap'];
+	entries['vendor'] = config.vendor;
 	// entries['vendor_match'] = config.vendor_match;
 	console.log('entries3333'+JSON.stringify(entries));
 
@@ -113,7 +113,6 @@ projects.forEach(function(project) {
 			rules:loaderAry
 		},
 		resolve: {
-			// root: [config.resolve('src')],
 			alias: config.alias
 		},
 		plugins: plugins,
@@ -129,7 +128,5 @@ projects.forEach(function(project) {
 	});
 
 })
-
-
 
 module.exports = webpackObj;

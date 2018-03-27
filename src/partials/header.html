@@ -11,6 +11,19 @@
         <meta name="renderer" content="webkit">
         <meta name="baidu-site-verification" content="gjQdVKptVG" />
         <title>{{htmlWebpackPlugin.options.title}}</title>
+        <link rel="shortcut icon" href="{{require('images/favicon.ico') }}">
+        <!--公共样式-->
+        [[ for (var css in htmlWebpackPlugin.files.css) { ]]
+        [[if (htmlWebpackPlugin.files.css[css].indexOf('vendor') > -1 ){ ]]
+            <link href="{{htmlWebpackPlugin.files.css[css]}}" rel="stylesheet">
+        [[ } ]]
+        [[ } ]]
+        <!--私有样式-->
+        [[ for (var css in htmlWebpackPlugin.files.css) { ]]
+        [[if (htmlWebpackPlugin.files.css[css].indexOf('vendor') == -1 ){ ]]
+        <link href="{{htmlWebpackPlugin.files.css[css]}}" rel="stylesheet">
+        [[ } ]]
+        [[ } ]]
     </head>
     <body>
 

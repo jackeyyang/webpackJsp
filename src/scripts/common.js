@@ -1,9 +1,6 @@
-function ax(){
-	console.log('342');
+require('sass/bootstrap.scss');
+function common(){
+	console.log('common');
 }
 
-ax();
-
-function cx(){
-    console.log('cx');
-}
+common();

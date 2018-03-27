@@ -181,7 +181,7 @@ TemplatePlugin.prototype = {
 							}
 						},
 						'css': [
-							config.STATIC_URL.DEV + '/dev/'+ options.project +'/styles/vendor_' + options.project + '.css',
+							config.STATIC_URL.DEV + '/dev/'+ options.project +'/styles/vendor.css',
 							config.STATIC_URL.DEV + '/dev/'+ options.project +'/styles/' + entry + '.css'
 							]
 					},

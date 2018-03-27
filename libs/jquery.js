@@ -1,3 +1,5 @@
-function jquerys(){
-    console.log(jquerys)
+function jqueryModules(){
+    console.log('jqueryModules')
 };
+
+jqueryModules();
