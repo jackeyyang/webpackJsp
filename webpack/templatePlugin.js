@@ -195,7 +195,7 @@ TemplatePlugin.prototype = {
 						var r = /^images/;
 						var flag = r.test(str);
 						var file;
-						if(flag){
+						if(flag){ // 如果是images开头的
 							 file = config.STATIC_URL.DEV + '/src/' + str;
 						}else{
 							 file = config.STATIC_URL.DEV + '/src/projects/' + str;

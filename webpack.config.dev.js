@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-27 18:40:39
+* @Last Modified time: 2018-03-29 17:41:35
 */
 
 'use strict'
@@ -80,8 +80,6 @@ projects.forEach(function(project) {
 		})
 	)
 
-
-
 	pageFiles.forEach(function(item) {
 		var pageData = yamlFrontMatter.loadFront(item);
 		var entry = pageData.entry && pageData.entry.replace(/\.js$/, '');
@@ -92,22 +90,24 @@ projects.forEach(function(project) {
 				chunks.push(entry);
 				entries[entry.replace(project+'/scripts/', '')] = [path.join(__dirname, 'src/projects', entry)];
 				// entries[entry.replace('/scripts/', '/')] = [path.join(__dirname, 'src/projects', entry)];
+				console.log('entries3333'+JSON.stringify(entries));
 			}
 		}
 	});
 
 	entries['vendor'] = config.vendor;
 	// entries['vendor_match'] = config.vendor_match;
-	console.log('entries3333'+JSON.stringify(entries));
+	console.log('entriesxxxxx'+JSON.stringify(entries));
+
 
 	var loaderAry = loader();
 	webpackObj.push({
 		entry: entries,
 		output: {
-			path: OUTPUTPATH_DEV,
-			filename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
+			path: OUTPUTPATH_DEV, // resolve('dev')
+			filename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'), // name = 'match'
 			chunkFilename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
-			publicPath: config.STATIC_URL.DEV+ '/dev/'
+			publicPath: config.STATIC_URL.DEV+ '/dev/' // config.STATIC_URL.DEV = http://dev.choice.com:9999
 		},
 
 		module: {
