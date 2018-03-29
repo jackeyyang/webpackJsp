@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-29 17:41:35
+* @Last Modified time: 2018-03-29 17:44:00
 */
 
 'use strict'
@@ -99,8 +99,8 @@ projects.forEach(function(project) {
 	// entries['vendor_match'] = config.vendor_match;
 	console.log('entriesxxxxx'+JSON.stringify(entries));
 
-
 	var loaderAry = loader();
+
 	webpackObj.push({
 		entry: entries,
 		output: {

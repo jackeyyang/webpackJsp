@@ -3,6 +3,7 @@
 exports.ECLIPSE = true;
 exports.FOLDERNAME = 'choiceEX'*/
 
+// 生成jsp到eclipse缓存里面
 exports.JSP_DEV_PATH = 'F:\\Trunk2\\Trunk2Project'
 exports.ECLIPSE = false;
 exports.FOLDERNAME = 'javaWebTest'
