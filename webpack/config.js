@@ -14,7 +14,6 @@ var alias = {
 	jquery: resolve('libs/jquery'),
 	utils: resolve('src/scripts/utils'),
 	fonts: resolve('src/fonts'),
-	clinic: resolve('src/projects/clinic'),
 	match: resolve('src/projects/match'),
 	images: resolve('src/images'),
 	images_sprites: resolve('src/images/spritesImage'),
@@ -25,7 +24,7 @@ var alias = {
 	data: resolve('data')
 }
 
-exports.projects = ['clinic','match']; // 设置启动项目
+exports.projects = ['match']; // 设置启动项目
 
 exports.templateSetting = {
 	layout: 'src/layouts',

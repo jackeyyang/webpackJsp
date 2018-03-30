@@ -15,7 +15,6 @@ var makeTemp = function(text, templateId, options) {
 	return text;
 };
 
-
 _.templateSettings = {
 	interpolate: /\{\{(.+?)\}\}/g,
 	evaluate: /\[\[(.+?)\]\]/g
@@ -160,8 +159,7 @@ TemplatePlugin.prototype = {
 				}
 				pageData.window.g_static_host = config.STATIC_URL.DEV + '/';
 				pageData.devServer = config.STATIC_URL.DEV;
-				var entry = pageData.entry && pageData.entry.replace(/\.js$/, '').replace(options.project+'/scripts/', '');
-				// var entry = pageData.entry && pageData.entry.replace(/\.js$/, '').replace(project+'/scripts/', '/');
+				var entry = pageData.entry && pageData.entry.replace(/\.js$/, '').replace('/scripts/', '/');
 
 				var source = fs.readFileSync(file, 'utf8');
 				source = repalceLayout(source, options);
@@ -174,15 +172,14 @@ TemplatePlugin.prototype = {
 								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/manifest.js'
 							},
 							'vendor': {
-								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/vendor' + '.js'
+								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/vendor_' + options.project + '.js'
 							},
 							'scripts/index': {
-								///dev/match/scripts/match/match.js
-								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project + '/scripts/' + entry + '.js'
+								'entry': config.STATIC_URL.DEV + '/dev/'+ options.project +'/scripts/' + entry + '.js'
 							}
 						},
 						'css': [
-							config.STATIC_URL.DEV + '/dev/'+ options.project +'/styles/vendor.css',
+							config.STATIC_URL.DEV + '/dev/'+ options.project +'/styles/vendor_' + options.project + '.css',
 							config.STATIC_URL.DEV + '/dev/'+ options.project +'/styles/' + entry + '.css'
 							]
 					},
@@ -195,7 +192,7 @@ TemplatePlugin.prototype = {
 						var r = /^images/;
 						var flag = r.test(str);
 						var file;
-						if(flag){ // 如果是images开头的
+						if(flag){
 							 file = config.STATIC_URL.DEV + '/src/' + str;
 						}else{
 							 file = config.STATIC_URL.DEV + '/src/projects/' + str;

@@ -6,7 +6,7 @@ entry: match/scripts/match.js
 ---
 
 <div id="match">
-    iwerxxxxttteee
+    iwerxxxx
     <div>
         公共文件夹的图片引入
         <img class="answer-img" src="{{require('images/match-examinee-index-bg.jpg')}}" width="40" alt="">

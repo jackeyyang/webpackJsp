@@ -8,9 +8,8 @@ module.exports = function(env) {
 			loader: 'url-loader',
 			options: {
 				limit: 192,
-				name: 'images/[name].[ext]' + config.HASH_LENGTH('hash', env),
-				context: './src',
-				publicPath:'../'
+				name: '[path][name].[ext]' + config.HASH_LENGTH('hash', env),
+				context: './src'
 			}
 		}]
 	}, {
@@ -18,7 +17,7 @@ module.exports = function(env) {
 		use: ExtractTextPlugin.extract({
 			fallback: 'style-loader',
 			use: [{
-				loader: 'css-loader',
+				loader: 'css-loader'
 			}, {
 				loader: 'postcss-loader',
 				options: {

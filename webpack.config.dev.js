@@ -2,7 +2,7 @@
 * @Author: jacky.yang
 * @Date:   2018-03-16 17:06:42
 * @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-29 17:44:00
+* @Last Modified time: 2018-03-30 11:48:49
 */
 
 'use strict'
@@ -26,25 +26,22 @@ var webpackObj = [];
 projects.forEach(function(project) {
 
 	var OUTPUTPATH_DEV = config.OUTPUTPATH_DEV + '/'+ project;
-	// config.OUTPUTPATH_DEV = resolve('dev')
 	rimraf.sync(OUTPUTPATH_DEV);
 
 	// //  html模板路径
 	const pageFiles = glob.sync('src/projects/' + project + '/v/**/*', {
 		nodir: true
 	});
-	// console.log('src/projects/clinic/v/clinic.jsp');
-	// console.log('xbsebbbb:'+pageFiles);
 
 	var entries = {};
 
 	var plugins = [
 		new webpack.optimize.CommonsChunkPlugin({
-			names: ['vendor','manifest'],
+			names: ['vendor' + project,'manifest'],
 			minChunks: Infinity
 		}),
 		new ExtractTextPlugin('styles/[name].css' + config.HASH_LENGTH('contenthash')),
-		//  去重
+
 		// new webpack.HashedModuleIdsPlugin(),
 		//把一个全局变量插入到所有的代码中,支持jQuery plugin的使用;使用ProvidePlugin加载使用频率高的模块
 		new webpack.ProvidePlugin({
@@ -71,10 +68,7 @@ projects.forEach(function(project) {
 				var regObj = reg.exec(filepath);
 				var pName = regObj[1];
 				var file = regObj[2]
-				// myConfig.JSP_DEV_PATH = F:\\Trunk2\\apache-tomcat-8.0.46\\webapps
 				file = myConfig.ECLIPSE ? path.resolve(myConfig.JSP_DEV_PATH, myConfig.FOLDERNAME+'/'+pName + '/v/' + file) : path.resolve(myConfig.JSP_DEV_PATH, '.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/' + myConfig.FOLDERNAME +'/'+ pName + '/v/' + file);
-				// console.log('file11111'+file);
-				// \Trunk2\apache-tomcat-8.0.46\webapps\choiceEX\clinic\v\clinic.jsp
 				return file;
 			}
 		})
@@ -85,17 +79,17 @@ projects.forEach(function(project) {
 		var entry = pageData.entry && pageData.entry.replace(/\.js$/, '');
 		var chunks = [];
 		if (entry) {
-			chunks = ['manifest', 'vendor'];
+			chunks = ['manifest', 'vendor' + project];
 			if (entry !== 'common') {
 				chunks.push(entry);
-				entries[entry.replace(project+'/scripts/', '')] = [path.join(__dirname, 'src/projects', entry)];
+				entries[entry.replace('/scripts/', '/')] = [path.join(__dirname, 'src/projects', entry)];
 				// entries[entry.replace('/scripts/', '/')] = [path.join(__dirname, 'src/projects', entry)];
 				console.log('entries3333'+JSON.stringify(entries));
 			}
 		}
 	});
 
-	entries['vendor'] = config.vendor;
+	entries['vendor_' + project] = ['jquery', 'libs/bootstrap', 'scripts/common_' + project];
 	// entries['vendor_match'] = config.vendor_match;
 	console.log('entriesxxxxx'+JSON.stringify(entries));
 
@@ -107,7 +101,7 @@ projects.forEach(function(project) {
 			path: OUTPUTPATH_DEV, // resolve('dev')
 			filename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'), // name = 'match'
 			chunkFilename: 'scripts/[name].js' + config.HASH_LENGTH('chunkhash'),
-			publicPath: config.STATIC_URL.DEV+ '/dev/' // config.STATIC_URL.DEV = http://dev.choice.com:9999
+			publicPath: config.STATIC_URL.DEV + '/dev/'+project+'/' // config.STATIC_URL.DEV = http://dev.choice.com:9999
 		},
 
 		module: {

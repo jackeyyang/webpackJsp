@@ -11,18 +11,21 @@
         <meta name="renderer" content="webkit">
         <meta name="baidu-site-verification" content="gjQdVKptVG" />
         <title>{{htmlWebpackPlugin.options.title}}</title>
-        <link rel="shortcut icon" href="{{require('images/favicon.ico') }}">
-        <!--公共样式-->
-        [[ for (var css in htmlWebpackPlugin.files.css) { ]]
-        [[if (htmlWebpackPlugin.files.css[css].indexOf('vendor') > -1 ){ ]]
-            <link href="{{htmlWebpackPlugin.files.css[css]}}" rel="stylesheet">
-        [[ } ]]
-        [[ } ]]
-        <!--私有样式-->
+
+        <jsp:include page="/v/common-statics-css.jsp" flush="true"></jsp:include>
+
         [[ for (var css in htmlWebpackPlugin.files.css) { ]]
         [[if (htmlWebpackPlugin.files.css[css].indexOf('vendor') == -1 ){ ]]
         <link href="{{htmlWebpackPlugin.files.css[css]}}" rel="stylesheet">
         [[ } ]]
+        [[ } ]]
+
+        [[ if (htmlWebpackPlugin.options.window) { ]]
+        <script>
+        [[ for (var varName in htmlWebpackPlugin.options.window) { ]]
+        window['{{varName}}'] = {{ JSON.stringify(htmlWebpackPlugin.options.window[varName]) }};
+        [[ } ]]
+        </script>
         [[ } ]]
     </head>
     <body>

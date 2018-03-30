@@ -1,14 +1,4 @@
-    [[ for (var chunk in htmlWebpackPlugin.files.chunks) { ]]
-    [[if (chunk =='manifest'){ ]]
-    <script src="{{ htmlWebpackPlugin.files.chunks[chunk].entry}}"></script>
-    [[ } ]]
-    [[ } ]]
-
-    [[ for (var chunk in htmlWebpackPlugin.files.chunks) { ]]
-    [[if (chunk =='vendor'){ ]]
-    <script src="{{ htmlWebpackPlugin.files.chunks[chunk].entry}}"></script>
-    [[ } ]]
-    [[ } ]]
+    <jsp:include page="/v/common-statics-js.jsp" flush="true"></jsp:include>
     [[ for (var chunk in htmlWebpackPlugin.files.chunks) { ]]
         [[if (chunk !='vendor' && chunk!= 'manifest'){ ]]
             <script src="{{ htmlWebpackPlugin.files.chunks[chunk].entry}}"></script>
