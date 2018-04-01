@@ -14,7 +14,6 @@ var alias = {
 	jquery: resolve('libs/jquery'),
 	utils: resolve('src/scripts/utils'),
 	fonts: resolve('src/fonts'),
-	clinic: resolve('src/projects/clinic'),
 	match: resolve('src/projects/match'),
 	images: resolve('src/images'),
 	images_sprites: resolve('src/images/spritesImage'),
@@ -25,7 +24,7 @@ var alias = {
 	data: resolve('data')
 }
 
-exports.projects = ['clinic','match'];
+exports.projects = ['match']; // 设置启动项目
 
 exports.templateSetting = {
 	layout: 'src/layouts',
@@ -36,7 +35,7 @@ exports.templateSetting = {
 }
 
 exports.vendor = ['jquery', 'libs/bootstrap','scripts/common'];
-exports.vendor_match = ['jquery', 'libs/bootstrap'];
+// exports.vendor_match = ['jquery', 'libs/bootstrap'];
 exports.STATIC_URL = {
 	DEV: 'http://dev.choice.com:' + PORT,
 	PRO: '/static'

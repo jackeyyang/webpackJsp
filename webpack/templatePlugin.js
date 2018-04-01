@@ -15,7 +15,6 @@ var makeTemp = function(text, templateId, options) {
 	return text;
 };
 
-
 _.templateSettings = {
 	interpolate: /\{\{(.+?)\}\}/g,
 	evaluate: /\[\[(.+?)\]\]/g

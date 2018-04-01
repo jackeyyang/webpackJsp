@@ -1,13 +1,4 @@
-<!--
-* @Author: jacky.yang
-* @Date:   2018-03-23 17:46:01
-* @Last Modified by:   jacky.yang
-* @Last Modified time: 2018-03-23 17:52:28
--->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
     <head>
@@ -20,6 +11,22 @@
         <meta name="renderer" content="webkit">
         <meta name="baidu-site-verification" content="gjQdVKptVG" />
         <title>{{htmlWebpackPlugin.options.title}}</title>
+
+        <jsp:include page="/v/common-statics-css.jsp" flush="true"></jsp:include>
+
+        [[ for (var css in htmlWebpackPlugin.files.css) { ]]
+        [[if (htmlWebpackPlugin.files.css[css].indexOf('vendor') == -1 ){ ]]
+        <link href="{{htmlWebpackPlugin.files.css[css]}}" rel="stylesheet">
+        [[ } ]]
+        [[ } ]]
+
+        [[ if (htmlWebpackPlugin.options.window) { ]]
+        <script>
+        [[ for (var varName in htmlWebpackPlugin.options.window) { ]]
+        window['{{varName}}'] = {{ JSON.stringify(htmlWebpackPlugin.options.window[varName]) }};
+        [[ } ]]
+        </script>
+        [[ } ]]
     </head>
     <body>
 
